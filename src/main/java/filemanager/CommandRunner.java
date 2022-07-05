@@ -18,7 +18,12 @@ public interface CommandRunner {
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                     System.out.println(br.readLine());
                 }
-                System.out.println("Status: Success!");
+
+                if (process.exitValue() == 0) {
+                    System.out.println("Command runner Status: Success!");
+                } else {
+                    throw new ProcessRunnerException("Command runner Status: Failed! Exit Code: " + process.exitValue());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
