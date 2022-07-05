@@ -22,7 +22,7 @@ To add ssh keys in linux:
 > git config --global user.name "Your Name"
 
 
-## Git Operations
+## Git Rest API
 
 **Create branch**
 
@@ -52,6 +52,11 @@ To add ssh keys in linux:
 "base": "master"
 }
 `
+
+## Java Git operations
+
+**To know current branch:**
+> git rev-parse --abbrev-ref HEAD
 
 ### Reference Documentation
 For further reference, please consider the following sections:
