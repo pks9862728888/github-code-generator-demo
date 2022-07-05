@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.StandardCopyOption;
 
 @Component
 @Slf4j
@@ -34,7 +33,7 @@ public class DownloadTestResourcesFeature {
     @Value("${test.resources.files.destination-dir}")
     private String testResourcesFilesDestinationDir;
 
-    private String CLEAN_TEMP_RESOURCES_DIR_CMD = "%s clean -PcleanTempTestResources";
+    private String CLEAN_TEMP_RESOURCES_DIR_CMD = "%s clean -PcleanTempTestResourcesAndTempClonedRepoDir";
     private String CLONE_RESOURCES_GIT_REPO_CMD = "git clone --branch=%s %s %s";
 
     @PostConstruct
@@ -44,7 +43,7 @@ public class DownloadTestResourcesFeature {
                 branchName, resourcesGitRepoUrl, resourcesRepoTmpCloneDir);
     }
 
-    public void cleanTempResourcesDirElseFail() {
+    public void cleanAllTempResourcesDirElseFail() {
         try {
             log.debug("Running clean temp resources dir...");
             CommandRunner.runCommand(CLEAN_TEMP_RESOURCES_DIR_CMD, true);

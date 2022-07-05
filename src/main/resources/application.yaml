@@ -10,3 +10,7 @@ test:
 
 mvn:
   command: mvn.cmd
+
+github:
+  username: ${GITHUB_USERNAME}
+  token: ${GITHUB_PERSONAL_ACCESS_TOKEN}
