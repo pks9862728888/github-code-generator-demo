@@ -1,4 +1,4 @@
-package com.example.githubcodegeneratordemo;
+package com.demo.githubcodegeneratordemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
