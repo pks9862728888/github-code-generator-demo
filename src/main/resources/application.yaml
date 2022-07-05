@@ -14,3 +14,9 @@ mvn:
 github:
   username: ${GITHUB_USERNAME}
   token: ${GITHUB_PERSONAL_ACCESS_TOKEN}
+
+logging:
+  level:
+    scripts: DEBUG
+    filemanager: DEBUG
+    com.demo.githubcodegenerator.demo: DEBUG

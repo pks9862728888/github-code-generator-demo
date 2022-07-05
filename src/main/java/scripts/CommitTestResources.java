@@ -21,20 +21,23 @@ public class CommitTestResources implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        // Check current repo branch
+        String newBranchName = feature.getCurrentRepoBranchElseFail();
+
         // Create and checkout new branch in test-resources-repo
-        feature.createBranchInTestResourcesRepo();
+//        feature.createBranchInTestResourcesRepo();
 
         // Clone test-resources-repo
-        feature.cloneResourcesGitRepoElseFail();
+//        feature.cloneResourcesGitRepoElseFail();
 
         // Clean test-resources dir from test-resources repo
-        feature.cleanClonedTempResourcesDirElseFail();
+//        feature.cleanClonedTempResourcesDirElseFail();
 
         // Move test-resources from our repo to test-resources-repo
-        feature.moveTestResourcesFromCurrentRepoToTestFilesRepo();
+//        feature.moveTestResourcesFromCurrentRepoToTestFilesRepo();
 
         // Exit when complete
-        System.out.println("Test resources copied from current repo to test-resources repo. Please navigate to test-resources-repo and raise pull request!");
+//        System.out.println("Test resources copied from current repo to test-resources repo. Please navigate to test-resources-repo and raise pull request!");
         System.exit(0);
     }
 }

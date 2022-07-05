@@ -46,7 +46,7 @@ public class DownloadTestResourcesFeature {
     public void cleanAllTempResourcesDirElseFail() {
         try {
             log.debug("Running clean temp resources dir...");
-            CommandRunner.runCommand(CLEAN_TEMP_RESOURCES_DIR_CMD, true);
+            CommandRunner.runCommand(CLEAN_TEMP_RESOURCES_DIR_CMD);
         } catch (ProcessRunnerException e) {
             System.out.println(e.getMessage());
             System.out.println("Exiting");
@@ -57,7 +57,7 @@ public class DownloadTestResourcesFeature {
     public void cloneResourcesGitRepoElseFail() {
         try {
             log.debug("Running clone resources git repo...");
-            CommandRunner.runCommand(CLONE_RESOURCES_GIT_REPO_CMD, true);
+            CommandRunner.runCommand(CLONE_RESOURCES_GIT_REPO_CMD);
         } catch (ProcessRunnerException e) {
             System.out.println(e.getMessage());
             System.out.println("Exiting");
