@@ -32,7 +32,26 @@ To add ssh keys in linux:
 > Then make POST request to:
 > https://api.github.com/repos/pks9862728888/github-code-generator-file-storage/git/refs
 > 
-> `{ "ref": "refs/heads/new-branch-name", "sha": "76756f4ab468cc50abc6bb437969c772b7336a0c"}`
+> `
+{ 
+"ref": "refs/heads/new-branch-name",
+"sha": "76756f4ab468cc50abc6bb437969c772b7336a0c"
+}
+`
+
+**Raise Pull request**
+
+> Make POST request to:
+> https://api.github.com/repos/pks9862728888/github-code-generator-file-storage/pulls
+> 
+> `
+{
+"title": "PR title",
+"body": "PR Description",
+"head": "new-branch-name",
+"base": "master"
+}
+`
 
 ### Reference Documentation
 For further reference, please consider the following sections:
