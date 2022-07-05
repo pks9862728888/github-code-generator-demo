@@ -1,9 +1,25 @@
 # Read Me First
-The following was discovered as part of building this project:
-
-* The original package name 'com.example.github-code-generator-demo' is invalid and this project uses 'com.example.githubcodegeneratordemo' instead.
 
 # Getting Started
+
+To check ssh permission:
+> ssh -T git@github.com
+
+To add ssh keys in windows:
+> ssh-keyscan github.com >> %HOMEPATH%/.ssh/known_hosts
+
+To add ssh keys in linux:
+> mkdir $HOME/.ssh
+> 
+> ssh-keyscan github.com >> $HOME/.ssh/known_hosts
+>
+> echo ssh_key_contents >> $HOME/.ssh/id_ed25519
+> 
+> chmod 600 $HOME/.ssh/id_ed25519
+> 
+> git config --global user.email "you@example.com"
+> 
+> git config --global user.name "Your Name"
 
 ### Reference Documentation
 For further reference, please consider the following sections:
