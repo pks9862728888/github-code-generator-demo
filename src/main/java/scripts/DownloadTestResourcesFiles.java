@@ -1,6 +1,7 @@
 package scripts;
 
 import filemanager.features.DownloadTestResourcesFeature;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +27,11 @@ public class DownloadTestResourcesFiles implements CommandLineRunner {
         // Clone resources git repo
         feature.cloneResourcesGitRepoElseFail();
 
+        // Move downloaded test-resources to our repo
+        feature.moveTestResourcesToCurrentRepo();
+
         // Exit when complete
+        System.out.println("Downloaded test resources file into current repo successfully!");
         System.exit(0);
     }
 }

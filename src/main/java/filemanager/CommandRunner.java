@@ -9,13 +9,12 @@ import java.io.InputStreamReader;
 public interface CommandRunner {
 
     static void runCommand(@NonNull String command, boolean printLogs) throws ProcessRunnerException {
+        System.out.println("Running command: " + command);
         try {
             Process process = Runtime.getRuntime().exec(command);
             process.waitFor();
 
             if (printLogs) {
-                System.out.println("Running command: " + command);
-
                 // Success stream
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                     String line = br.readLine();
