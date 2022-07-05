@@ -21,6 +21,19 @@ To add ssh keys in linux:
 > 
 > git config --global user.name "Your Name"
 
+
+## Git Operations
+
+**Create branch**
+
+> Make GET request to: 
+> https://api.github.com/repos/pks9862728888/github-code-generator-file-storage/git/refs/heads
+> 
+> Then make POST request to:
+> https://api.github.com/repos/pks9862728888/github-code-generator-file-storage/git/refs
+> 
+> `{ "ref": "refs/heads/new-branch-name", "sha": "76756f4ab468cc50abc6bb437969c772b7336a0c"}`
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
