@@ -21,7 +21,10 @@ public class DownloadTestResourcesFiles implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // Clean temp dir
-        feature.cleanTempDirElseFail();
+        feature.cleanTempResourcesDirElseFail();
+
+        // Clone resources git repo
+        feature.cloneResourcesGitRepoElseFail();
 
         // Exit when complete
         System.exit(0);

@@ -57,7 +57,7 @@
 						<configuration>
 							<filesets>
 								<fileset>
-									<directory>tmp</directory>
+									<directory>temp</directory>
 									<excludes>
 										<exclude>.gitkeep</exclude>
 									</excludes>

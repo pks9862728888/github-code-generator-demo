@@ -15,8 +15,21 @@ public interface CommandRunner {
 
             if (printLogs) {
                 System.out.println("Running command: " + command);
+
+                // Success stream
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-                    System.out.println(br.readLine());
+                    String line = br.readLine();
+                    if (line != null) {
+                        System.out.println(line);
+                    }
+                }
+
+                // Error stream
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
+                    String line = br.readLine();
+                    if (line != null) {
+                        System.out.println(line);
+                    }
                 }
 
                 if (process.exitValue() == 0) {
