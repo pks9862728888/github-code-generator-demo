@@ -1,0 +1,7 @@
+test:
+  resources:
+    repo: https://github.com/pks9862728888/github-code-generator-file-storage.git
+    branch: master
+
+mvn:
+  command: mvn.cmd

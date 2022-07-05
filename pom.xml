@@ -45,12 +45,41 @@
 		</dependency>
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>cleanTempTestResources</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>3.2.0</version>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>tmp</directory>
+									<excludes>
+										<exclude>.gitkeep</exclude>
+									</excludes>
+								</fileset>
+								<fileset>
+									<directory>src/test/resources/test-data</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<mainClass>org.demo.githubcodegeneratordemo.GithubCodeGeneratorDemoApplication</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
