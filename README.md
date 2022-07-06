@@ -58,6 +58,18 @@ To add ssh keys in linux:
 **To know current branch:**
 > git rev-parse --abbrev-ref HEAD
 
+**To create another branch and push changes:**
+> git -C /path branch new-branch
+> 
+> git -C /path checkout new-branch
+> 
+> git -C /path add .
+> 
+> git -C /path commit -am "commit"
+> 
+> git -C /path push --set-upstream origin new-branch
+
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 

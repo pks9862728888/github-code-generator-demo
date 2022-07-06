@@ -1,22 +1,16 @@
 test:
   resources:
     repo:
-      url: https://github.com/pks9862728888/github-code-generator-file-storage.git
+      url: git@github.com:pks9862728888/github-code-generator-file-storage.git
       branch: master
       temp-clone-dir: temp/github-code-generator-file-storage/
     files:
       source-dir: ${test.resources.repo.temp-clone-dir}src/test/resources/test-data/
       destination-dir: src/test/resources/test-data/
 
-mvn:
-  command: mvn.cmd
-
-github:
-  username: ${GITHUB_USERNAME}
-  token: ${GITHUB_PERSONAL_ACCESS_TOKEN}
+command:
+  mvn: mvn.cmd
 
 logging:
   level:
-    scripts: DEBUG
-    filemanager: DEBUG
-    com.demo.githubcodegenerator.demo: DEBUG
+    com.demo.githubcodegeneratordemo: DEBUG

@@ -1,4 +1,4 @@
-package filemanager.exceptions;
+package com.demo.githubcodegeneratordemo.filemanager.exceptions;
 
 public class ProcessRunnerException extends Exception {
 

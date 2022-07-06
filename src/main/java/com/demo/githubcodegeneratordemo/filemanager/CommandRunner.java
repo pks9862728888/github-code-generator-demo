@@ -1,15 +1,21 @@
-package filemanager;
+package com.demo.githubcodegeneratordemo.filemanager;
 
-import filemanager.exceptions.ProcessRunnerException;
+import com.demo.githubcodegeneratordemo.filemanager.exceptions.ProcessRunnerException;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
-public interface CommandRunner {
+@Component
+@Slf4j
+public class CommandRunner {
 
     static void runCommand(@NonNull String command) throws ProcessRunnerException {
-        System.out.println("Running command: " + command);
+        log.debug("Running command: {}", command);
         try {
             Process process = Runtime.getRuntime().exec(command);
             process.waitFor();
@@ -30,7 +36,7 @@ public interface CommandRunner {
             }
 
             if (process.exitValue() == 0) {
-                System.out.println("Command runner Status: Success!");
+                log.debug("Command runner Status: Success!");
             } else {
                 throw new ProcessRunnerException("Command runner Status: Failed! Exit Code: " + process.exitValue());
             }
@@ -41,8 +47,18 @@ public interface CommandRunner {
         }
     }
 
-    static String runCommandAndReturnOutput(@NonNull String command) throws ProcessRunnerException {
-        System.out.println("Running command: " + command);
+    public static void runCommandElseFail(@NonNull String command) {
+        try {
+            runCommand(command);
+        } catch (ProcessRunnerException e) {
+            log.error(e.getMessage());
+            log.error("Exiting...");
+            System.exit(-1);
+        }
+    }
+
+    public static String runCommandAndReturnOutput(@NonNull String command) throws ProcessRunnerException {
+        log.debug("Running command: {}", command);
         try {
             Process process = Runtime.getRuntime().exec(command);
             process.waitFor();
@@ -65,7 +81,7 @@ public interface CommandRunner {
             }
 
             if (process.exitValue() == 0) {
-                System.out.println("Command runner Status: Success!");
+                log.debug("Command runner Status: Success!");
             } else {
                 throw new ProcessRunnerException("Command runner Status: Failed! Exit Code: " + process.exitValue());
             }
@@ -75,5 +91,22 @@ public interface CommandRunner {
             throw new ProcessRunnerException(String.format("Exception occurred while running command: %s Exception: %s",
                     command, e.getMessage()));
         }
+    }
+
+    public static String runCommandAndReturnOutputElseFail(@NonNull String command, boolean validateEmptyResult) {
+        try {
+            String result = runCommandAndReturnOutput(command);
+
+            if (validateEmptyResult && result.trim().isEmpty()) {
+                throw new ProcessRunnerException("Empty result was returned by command: " + command);
+            }
+
+            return result;
+        } catch (ProcessRunnerException e) {
+            log.error(e.getMessage());
+            log.error("Exiting...");
+            System.exit(-1);
+        }
+        return StringUtils.EMPTY;
     }
 }

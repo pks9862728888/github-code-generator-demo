@@ -2,5 +2,5 @@ test:
   resources:
     branch: ${TEST_RESOURCES_REPO_BRANCH}
 
-mvn:
-  command: mvn
+command:
+  mvn: mvn

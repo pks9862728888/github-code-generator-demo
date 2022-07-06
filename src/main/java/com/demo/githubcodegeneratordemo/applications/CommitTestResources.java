@@ -1,31 +1,24 @@
-package scripts;
+package com.demo.githubcodegeneratordemo.applications;
 
-import filemanager.features.CommitTestResourcesFeature;
-import filemanager.features.DownloadTestResourcesFeature;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import com.demo.githubcodegeneratordemo.filemanager.features.CommitTestResourcesFeature;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "filemanager.*")
-public class CommitTestResources implements CommandLineRunner {
-
-    @Autowired
-    private CommitTestResourcesFeature feature;
+@ComponentScan(basePackages = "com.demo.githubcodegeneratordemo.filemanager.*")
+public class CommitTestResources {
 
     public static void main(String[] args) {
-        SpringApplication.run(CommitTestResources.class, args);
-    }
+        ConfigurableApplicationContext context = SpringApplication.run(CommitTestResources.class, args);
+        CommitTestResourcesFeature feature = context.getBean(CommitTestResourcesFeature.class);
 
-    @Override
-    public void run(String... args) {
         // Check current repo branch
         String newBranchName = feature.getCurrentRepoBranchElseFail();
 
         // Create and checkout new branch in test-resources-repo
-//        feature.createBranchInTestResourcesRepo();
+        feature.createBranchInTestResourcesRepoAndCheckout(newBranchName);
 
         // Clone test-resources-repo
 //        feature.cloneResourcesGitRepoElseFail();
@@ -38,6 +31,6 @@ public class CommitTestResources implements CommandLineRunner {
 
         // Exit when complete
 //        System.out.println("Test resources copied from current repo to test-resources repo. Please navigate to test-resources-repo and raise pull request!");
-        System.exit(0);
+        context.close();
     }
 }

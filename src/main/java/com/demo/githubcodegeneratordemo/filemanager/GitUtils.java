@@ -1,4 +1,4 @@
-package filemanager;
+package com.demo.githubcodegeneratordemo.filemanager;
 
 public interface GitUtils {
 

@@ -1,4 +1,4 @@
-package filemanager.features;
+package com.demo.githubcodegeneratordemo.filemanager.features;
 
 import lombok.NonNull;
 

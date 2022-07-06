@@ -1,7 +1,6 @@
-package filemanager.features;
+package com.demo.githubcodegeneratordemo.filemanager.features;
 
-import filemanager.CommandRunner;
-import filemanager.exceptions.ProcessRunnerException;
+import com.demo.githubcodegeneratordemo.filemanager.CommandRunner;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +14,7 @@ import java.io.IOException;
 @Slf4j
 public class DownloadTestResourcesFeature {
 
-    @Value("${mvn.command}")
+    @Value("${command.mvn}")
     private String mavenCommand;
 
     @Value("${test.resources.repo.branch}")
@@ -34,35 +33,25 @@ public class DownloadTestResourcesFeature {
     private String testResourcesFilesDestinationDir;
 
     private String CLEAN_TEMP_RESOURCES_DIR_CMD = "%s clean -PcleanTempTestResourcesAndTempClonedRepoDir";
+    private String CLEAN_TEST_RESOURCES_DIR_CMD = "%s clean -PcleanTempClonedRepoDir";
     private String CLONE_RESOURCES_GIT_REPO_CMD = "git clone --branch=%s %s %s";
 
     @PostConstruct
     void init() {
         this.CLEAN_TEMP_RESOURCES_DIR_CMD = String.format(CLEAN_TEMP_RESOURCES_DIR_CMD, mavenCommand);
+        this.CLEAN_TEST_RESOURCES_DIR_CMD = String.format(CLEAN_TEST_RESOURCES_DIR_CMD, mavenCommand);
         this.CLONE_RESOURCES_GIT_REPO_CMD = String.format(CLONE_RESOURCES_GIT_REPO_CMD,
                 branchName, resourcesGitRepoUrl, resourcesRepoTmpCloneDir);
     }
 
     public void cleanAllTempResourcesDirElseFail() {
-        try {
-            log.debug("Running clean temp resources dir...");
-            CommandRunner.runCommand(CLEAN_TEMP_RESOURCES_DIR_CMD);
-        } catch (ProcessRunnerException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Exiting");
-            System.exit(-1);
-        }
+        log.debug("Running clean temp resources dir...");
+        CommandRunner.runCommandElseFail(CLEAN_TEMP_RESOURCES_DIR_CMD);
     }
 
     public void cloneResourcesGitRepoElseFail() {
-        try {
-            log.debug("Running clone resources git repo...");
-            CommandRunner.runCommand(CLONE_RESOURCES_GIT_REPO_CMD);
-        } catch (ProcessRunnerException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Exiting");
-            System.exit(-1);
-        }
+        log.debug("Running clone resources git repo...");
+        CommandRunner.runCommandElseFail(CLONE_RESOURCES_GIT_REPO_CMD);
     }
 
     public void moveTestResourcesToCurrentRepo() {
@@ -75,5 +64,10 @@ public class DownloadTestResourcesFeature {
             System.out.println("Exiting");
             System.exit(-1);
         }
+    }
+
+    public void cleanClonedTestResourcesRepo() {
+        log.debug("Clean cloned test-resources repo...");
+        CommandRunner.runCommandElseFail(CLEAN_TEST_RESOURCES_DIR_CMD);
     }
 }
