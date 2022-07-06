@@ -10,6 +10,7 @@ test:
 
 command:
   mvn: mvn.cmd
+  copy: xcopy /s /i /j /y /q
 
 logging:
   level:

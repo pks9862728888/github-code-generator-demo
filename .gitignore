@@ -4,6 +4,7 @@ temp/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+**/src/test/resources/test-data/
 
 ### STS ###
 .apt_generated

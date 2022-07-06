@@ -18,19 +18,19 @@ public class CommitTestResources {
         String newBranchName = feature.getCurrentRepoBranchElseFail();
 
         // Create and checkout new branch in test-resources-repo
-        feature.createBranchInTestResourcesRepoAndCheckout(newBranchName);
-
-        // Clone test-resources-repo
-//        feature.cloneResourcesGitRepoElseFail();
+        feature.cloneRepoCreateBranchInTestResourcesRepoAndCheckout(newBranchName);
 
         // Clean test-resources dir from test-resources repo
-//        feature.cleanClonedTempResourcesDirElseFail();
+        feature.cleanClonedTempResourcesDirElseFail();
 
         // Move test-resources from our repo to test-resources-repo
-//        feature.moveTestResourcesFromCurrentRepoToTestFilesRepo();
+        feature.copyTestResourcesFromCurrentRepoToTestFilesRepo();
+
+        // Add all copied files to git
+        feature.addTestResourcesToGit();
 
         // Exit when complete
-//        System.out.println("Test resources copied from current repo to test-resources repo. Please navigate to test-resources-repo and raise pull request!");
+        System.out.println("Test resources copied from main repo to test-resources repo. Please navigate to test-resources-repo and commit!");
         context.close();
     }
 }

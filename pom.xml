@@ -81,6 +81,29 @@
 			</build>
 		</profile>
 		<profile>
+			<id>cleanTestResourcesTestDataDir</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>3.2.0</version>
+						<configuration>
+							<excludeDefaultDirectories>true</excludeDefaultDirectories>
+							<filesets>
+								<fileset>
+									<directory>temp/github-code-generator-file-storage/src/test/resources/test-data/*</directory>
+									<includes>
+										<include>/**</include>
+									</includes>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
 			<id>cleanTempTestResourcesAndTempClonedRepoDir</id>
 			<build>
 				<plugins>
